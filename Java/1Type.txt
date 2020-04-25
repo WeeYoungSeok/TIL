@@ -1,0 +1,62 @@
+java의 complier : jre -> javac.exe -> java.exe
+- 컴퓨터가 알아들을 수 있는 언어로 한 번에 변환하여 실행
+
+
+interpreter : 한 줄씩 변환 및 실행
+
+
+Eclipse IDE
+- 통합 개발 환경
+
+Enterprise - 개발 웹,기업용
+
+
+
+java 1.8+ VM - 자바 1.8버전 이상의 버츄얼 머신이 필요
+
+
+변수 선언 방법
+- type 변수 = 값;
+
+메모리에 값을 할당하는 것
+값 자체를 literal 이라고 한다
+java 의 type은 기본타입과 참조타입으로 나뉜다
+
+
+
+정수형 실수형은 ' , " 필요없이 사용
+문자형은 ' 필요 ex) char c1 = 'a';
+유니코드도 가능 ex) char lastName = '\uc704';
+\uc704 = 위
+
+문자형 a는 정수형 int에 담을경우 97이 나옴(아스키코드랑 같이 대응이됨)
+- 아스키코드표 참조
+
+문자열은 " 필요 ex) String s1 = "aa";
+String 은 char 가 합쳐진 존재라고 생각해도 된다.
+문자열에서의 덧셈은 문자끼리 더해준다
+ex) String s1 = "aa";
+	String s2 = "bb";
+	String sumS = s1 + s2;
+이렇게하고 sumS를 출력해도 aabb로 정상적으로 출력이 가능
+
+참조타입
+
+object형 이라고도한다.
+메모리에 할당된 주소를 참조한 값을 사용한다.
+
+*모든 클래스는 object를 상속받는다.
+object를 상속받는 모든 클래스
+모든 클래스
+
+field : 값(속성)
+constructor : 생성자
+method : 기능
+
+\b : backspace
+\n : 줄바꿈
+\\ : \를 표현
+\r : 줄의 가장 앞자리로
+\t : tab(가로 
+
+%s : String %d : digit %n : new line(\n\n) %f : float

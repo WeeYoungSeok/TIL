@@ -1,0 +1,57 @@
+Type 변수 = 값; 값=리터럴!
+
+기본타입을 값 자체 - 바로 값이 나옴(call by value)
+주소타입은 해당타입의 주소값 - 해당값의 주소값(call by reference)
+
+Operator (연산자)
+Method (메소드) - 해당 클래스의 기능
+
+Control - 조건문(if , switch) , 반복문(for,while, do while)
+
+
+변수에 final 붙이면 상수
+
+스캐너 클래스를 선언할때 
+스캐너 클래스는 논스태틱의 형태(스캐너 클래스는 import로 불러옴)
+
+
+컨트롤 스캐너 클릭 java /jdk/ src 확인
+
+
+java api에서
+nextInt() 설명에서
+Throws: - 오류가 어떠한 경우에 발생하는 지를 알려줌
+
+
+
+
+Math.pow(x,y);
+
+- 밑이 x이고 지수가 y라는 뜻이다.
+
+좌표평면 (0.0)에서 (a.,b)까지의 거리는 (a^2 + b^2)^0.5 이다.
+
+Math.sqrt(x) 
+
+- x에 루트씌워준다
+
+Math.hypot(x,y)
+
+- 루트(x^2 + y^2) 의 값이 나온다..............................
+
+메소드명
+
+isLeapYear(param)
+
+
+여기서 'is' 는 보통 param을 맞다 아니다 (boolean 리턴)
+
+
+hasxxx(param)
+
+여기서 'has'는 보통 param이 있다 없다 (boolean 리턴)
+
+toxxxx(param)
+
+여기서 'to'(~로) 는 보통 param형태가 스트링(??(String 등등) 리턴)  
+
