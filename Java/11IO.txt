@@ -1,0 +1,5 @@
+inputStream, outputStream
+
+Stream
+-연속적인 데이터의 흐름
+-전용 단위는 byte
