@@ -1,0 +1,14 @@
+Collection
+- 여러 타입을 효과적으로 담을 수 있음
+- 자료(데이터,객체)를 보다 쉽게 관리하기 위한 클래스 (배열은 하나의 타입이지만 
+Collection은 타입을 여러개 담을 수 있음)
+
+collection과 array의 차이점 : generic(type 관리),capacity(가변 용량)
+
+List와 Set은 collection 상속 받음
+Map은 collection 상속 받지않음
+
+List는 순서o 중복o
+Set은 순서x  중복x
+Map은 순서x key 중복x ,value 중복o(덮어씌우기 가능)
+
