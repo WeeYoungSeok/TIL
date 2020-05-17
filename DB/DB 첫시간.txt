@@ -1,0 +1,143 @@
+C:\oraclexe\app\oracle\product\11.2.0\server
+
+나의 오라클 home path
+
+클라이언트 브라우저 cmd,dbever(sqlplus이름으로 우리가 설치해놓은 오라클 11g XE 요청할수있고
+그걸 응답해주는 프로그램 - 접근은 아이디 kh  비번 kh로 접근함)
+
+서버는 구글 네이버
+
+linesize 가로크기 
+pagesize 세로크기
+크기 조정 같은건 cmd 재시작시 초기화
+
+emp 테이블의 컬럼들은 맨위 가로 (어트리뷰트)
+
+그 밑에 정보들 한줄이 로우(튜플) (가로로)
+
+desc 테이블명; 현재 테이블이 어떠한 컬럼으로 되어있는지
+		컬럼들의 타입, 크기, not null등 보여줌
+
+-- 주석
+
+SELECT ENAME, EMPNO, SAL ( ENAME 먼저나옴 앞에쓴 순서대로 출력
+FROM EMP;
+
+EMP테이블에서 ENAME, EMPNO, SAL의 컬럼들의 정보를 출력
+
+SELECT 컬럼,다른테이블컬럼
+FROM 테이플,다른테이블
+
+UPDATE TABLE
+SET 컬럽명=값 , 컬럼명=값 , 컬럼명=값
+WHERE 조건;
+
+업데이트에는 WHERE가 무조건 따라온다고 생각하자 그냥 외우자
+앵간하면 전체 변경을 안해줌
+WHERE 없으면 전체 튜플들의 컬럼의 값을 전부 내가 설정한 값으로 바뀜
+
+
+CREAT SEQUENCE 시쿼스명 (보통 값을 올릴때 사용 내리기도 가능)
+
+스타드위드가 5이고
+5씩 올라가다가 맥스넘치면
+5로 되돌아오지않고 1임
+
+ CURRVAL은 NEXTVAL이 적어도 한번 실행되야 쓸 수 있음
+
+DUAL은 가상테이블??인거같음
+
+CREATE TABLE E AS SELECT * FROM EMP;
+
+AS뒤에 출력되는 애들의 테이블 이름을 E로 바꾸장(복제)
+
+
+복제할때 WHERE조건으로 1=2같은 펄스조건을 넣어주면
+컬럼들만 복제가된다 (튜플말고 컬럼들만 가져오고 싶을때)
+
+
+AS 기억해두기.
+EX) EMPNO AS M1 
+AS는 뒤의 이름으로 AS 앞에 이름을 바꿔주어라.
+
+
+ALTER TABLE은 보통 컬럼과 관련있음
+
+테이블을 만들고 컬럼에 데이터를 추가하고나서
+COMMIT 을 안하면 확정 시킨것이 아니다.
+
+ROLLBACK은 이전 상태로 되돌리자.
+
+트랜잭션은 무언가를 보내면 무언가를 받는다를 하나로 묶어야한다
+다 성공하던가 다 실패하던가해야함
+
+EX) 은행에서 100만원을 보냈으면 받는사람이 꼭 100을 받아야함 (일관적) - 일관성
+
+	100만원 보내다가 오류가생기면 받는 사람이 못받으면
+	보낸사람 -100만원이 원래대로 꼭올아와야함 (ALL OR NOTHING) - 원자성
+
+	100만원 받고나서 30분뒤에 사라지거나 그러면 안댐 (영구적반영) - 지속성
+
+........COMMIT .......... COMMIT ........... ROLLBACK하면 바로 전의 COMMIT 상태로 
+돌아감 COMMIT이 작업단위라고 생각하면됨 (트랜잭션)
+
+SYS(SYSTEM) = 관리자 (해당 데이터베이스의 최고 권력자)
+
+
+테이블 생성할때
+CONSTRAINT
+제약 조건이 데이터 무결성을 위해 필요함
+NOT NULL
+UNIQUE
+PRIMARY KEY
+CHECK 이런것
+
+
+설정레벨 : 설정레벨에만 부여가능
+
+
+기본키는 테이블에서 유일하게 하나 가져올수있음. 이름이
+겹치지 않으면 이름이 기본키가 될 수 있음.(보통은 번호나 학번),( 최소성 = NOT NULL )
+
+기본키는 번호 이름 주민번호 이 세개가 기본키가 될 수있는데
+만약 번호를 기본키로 정하면 이름 주민번호는 대체키
+
+그리고 기본키를 정하기전에 기본키가 될 수 있는 번호 이름 주민번호가
+후보키
+
+EMP테이블의 기본키는 EMPNO
+DEPT테이블의 기본키는 DEPT
+ 
+이때 EMP테이블에 DEPT테이블의 기본키인 DEPTNO가 있다
+이런경우 DEPTNO가 외래키
+
+테이블안의 컬럼중에 그 컬럼이 다른테이블에 기본키인것
+
+CHECK - 해당컬럼에 특정 조건을 항상 만족 내가 원하는 값 EX)성별에 들어가는것은 남,여
+
+
+
+CREATE TABLE TABLE_NOTNULL02(
+ID CHAR(3),
+NAME VARCHAR2(20),
+CONSTRAINT TN02_ID_NN NOT NULL(ID));
+이건 오류뜸
+제약조건 NOT NULL은 컬럼에만 부여가능
+
+UNIQUE(ID,NAME) ID와 NAME이 같아야함 
+		ID만 같고 NAME다르면 인설트됨
+		ID는 틀리고 NAME 같아도 인설트됨
+
+제약조건 에러 EX) KH.TU02_ID_UN    내아이디.내가지은제약조건이름
+
+프라이머리키에 컬럼이 2개 잡히면 이걸 복합키 슈퍼키라고함
+
+CREATE TABLE TABLE_FK01(
+ID CHAR(3) PRIMARY KEY,
+NAME VARCHAR2(20),
+PKID CHAR(3) REFERENCES TABLE_PK01(ID)
+);
+
+PKID CHAR(3) REFERENCES TABLE_PK01(ID)
+ID참조 이때는 TABLE_PK01 ID의 값이 같아야만 추가됨
+
