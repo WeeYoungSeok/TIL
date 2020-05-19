@@ -1,0 +1,34 @@
+서브쿼리의 결과값이 하나가 나오겟다 = SINGLE ROW SUBQUERY
+
+
+ANY > 5000,3000,2975 .... 800 다 다들어갈수있음(OR)
+
+ALL > 가장 작은애보다도 작아야함
+
+ANY < 가장 작은 애보다 작으면된다
+
+ALL < 가장 큰애가 들어와야함
+
+
+FROM 부터 조건까지 똑같으면 합칠 수 있음 (멀티 컬럼 서브쿼리)
+
+EX) SELECT ENAME, SAL, DEPTNO 
+FROM EMP 
+WHERE DEPTNO IN (SELECT DEPTNO FROM EMP WHERE JOB=‘SALESMAN’)
+AND SAL IN (SELECT SAL FROM EMP WHERE JOB=‘SALESMAN’);
+
+이런것 처럼
+
+SELECT ENAME, SAL, DEPTNO
+FROM EMP 
+WHERE (DEPTNO, SAL) IN (SELECT DEPTNO, SAL FROM EMP WHERE JOB=‘SALESMAN’);
+
+이렇게 가능
+
+
+서브쿼리 결과가 테이블로 사용되는 것 = INLINE VIEW
+
+
+서브쿼리 문제는 문제를 잘 읽고 짤라야함
+
+
