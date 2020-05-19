@@ -1,0 +1,256 @@
+sql에서 함수도 메소드랑 실행 순서가 동일하다(함수안에 함수있을 경우)
+
+SQLPLUS KH/KH - 자동로그인
+
+LPAD : 왼쪽을 내가 원하는 값으로 채워줌(오른쪽 정렬)
+RPAD : 오른쪽을 내가 원하는 값으로 채워줌(왼쪽 정렬)
+
+
+LTRIM/RTRIM : 패턴으로 제거가 아님
+SELECT LTRIM('xyxzyyTech6 327', 'xyz') AS "Q1",
+- 왼쪽 xyz 차례대로 가면서 지워줌
+
+RTRIM('xyxzyyTech6 327', '0123456789') AS "Q2",
+- 오른쪽에서 가면서 0123456789를 지움 그래서 723지우고 공백 만나서 못지움
+
+RTRIM('xyxzyyTech6 327' , ' 0123456789') AS "Q3" FROM DUAL;
+- 오른쪽에서 가면서 0123456789를 지움(공백포함) 그래서 723지우고 공백도 지우고
+6도 지워짐
+
+그냥 TRIM은 문자 하나만 삭제 가능 (양쪽으로)
+
+
+ SELECT ENAME, INSTR(ENAME,'S',1,1)
+  2  FROM EMP
+  3  ;
+
+-S가 첫번째부터 검사하는데 1개나오는 시점
+
+
+
+SELECT ENAME, INSTR(ENAME,'L',-1,2)
+  2  FROM
+  3  EMP;
+
+- 거꾸로 검사하는데 L이 2번째나오는 시점 (리턴값은 왼쪽에서 읽음.. )
+EX) ALLEN 이면 거꾸로 첫 L만나고 다음L검사하고 끝나는데 
+	리턴값은 A부터 읽어서 A가 1 다음 L이 2 라서 2리턴
+
+SELECT INSTR('ALLINALL','L',1,2) FROM DUAL;
+- 왼쪽에서 검사하는데 1번째부터 L이 두번나오는 시점의 자리 리턴 (3)
+
+SELECT INSTR('ALLINALL','L',-11,2) FROM DUAL;
+- 오른쪽에서 검사하는데 -11번째부터 L이 두번나오는 시점의 자리 리턴 (7)
+
+
+오라클에서 한글 한글자가 가지는 바이트 숫자는 얼마일까?
+
+
+DUAL은 가상테이블!!
+
+CHAR를 LENGTH를 하면 전부 같은값 가변문자열이 아님 고정 문자열이라서
+A한글자든 AA든 AAA든 3리턴됨(CHAR(3)일 경우)
+
+VARCHAR2는 LENGTH를 하면 다른 값 왜냐면 CHAR과 반대로 가변 문자열이라.
+
+
+SELECT SUBSTR(ENAME,-2,2),ENAME
+  2  FROM EMP;
+
+- 오른쪽부터 읽는데 SMITH면 T부터 2개 오른쪽으로 2개 그래서 고로 TH가 리턴
+
+
+SELECT SUBSTR(ENAME,-3,2),ENAME
+  2  FROM EMP;
+
+- 오른쪽부터 읽는데 -3이니간 3번째 인 I부터 오른쪽으로 2개 그래서 고로 
+SMITH에서 T부터 H까지 2개 
+SUBSTR의 갯수는 그 지정문자부터 오른쪽임
+
+ SELECT SUBSTR(ENAME,-3)
+  2  FROM EMP;
+
+- 으론쪽부터 읽는데 -3이니간 SMITH에서 I부터 오른쪽 끝까지
+고로 ITH가 리턴
+
+
+SELECT ROUND(125.635,-1)
+  2  FROM DUAL;
+
+반올림 기능인데 -1이 붙으면 소수점 기준으로 왼쪽 숫자를 반올림해줌
+고로 130리턴
+
+SELECT TRUNC(125.335,-1)
+  2  FROM
+  3  DUAL;
+버림 기능인데 -1이면 소수점 기준으로 왼쪽 숫자를 버림
+고로 120리턴
+
+ SELECT ROUND(125.335,1)
+  2  FROM DUAL;
+
+이거는 반올림 1이면 소수점 기준으로 오른쪽 숫자 하나만 출력 
+뒤의 숫자를 반올림해서
+
+
+SELECT ENAME,HIREDATE, ADD_MONTHS(HIREDATE,240)
+  2  FROM EMP;
+
+-- 240이 20달 HIREDATE에다가 20년 더해준 년도의 년 월 일 출력
+
+
+
+ SELECT ENAME, JOB, HIREDATE,
+  2  TRUNC(MONTHS_BETWEEN('2000/01/01',HIREDATE)/12)
+  3  FROM EMP WHERE MONTHS_BETWEEN('2000/01/01',HIREDATE)>120;
+
+WHERE부분 00년 1월 1일부터 자기가 근무한 일까지 개월을 반환
+그게 120보다 큰값들만 120(10년)
+
+그리고 그걸 12개월로 나눠서 소수점을 버려줌(00년까지 몇년 일한지 리턴)
+
+
+SYSDATE 에서 FMMM과 MM차이는 5와 05차이
+
+
+NULL관련 쌉중요
+NULL은 모든 언어에서 정말 중요
+
+NULL POINTER EXCEPTION : NPE
+이건 백프로 우리의 잘못 (RUNTIME EXCEPTION중 하나) 
+아무것도 없을때 뭘 시켯을때 
+
+빈휴지심이 있는건 NULL이 아님
+휴지가 아예없어야 NULL
+
+NVL
+- NULL이 없는 경우(어떠한 값이 있음) 해당 컬럼값 반환
+- NULL을 채울경우 그 컬럼의 데이터 타입과 동일한 타입 넣어줘야함
+
+SELECT ENAME, SAL*12+NVL(COMM,0) AS 연봉
+  2  FROM EMP;
+
+이렇게 하면 연봉 계산 가능함
+NVL을 안썻을때는 NULL값을 더해줘야하는데 없는걸 더하는건 못해서
+NULL 반환됐었음
+
+CASE WHEN 비교값 THEN 같을때 반환값 WHEN ... THEN ELSE 반환값 END
+PPT랑 다름!!
+
+다중 행 함수는
+컬럼의 모든 값으로 비교
+묶음으로 되어있어야함
+
+
+SELECT COUNT(*)
+  2  FROM EMP;
+
+
+SELECT MAX(SAL),MIN(SAL),SUM(SAL),AVG(SAL),SAL
+- 앞에 MAX,MIN,SUM,AVG는 다묶음인 애들인데
+SAL은 개개인의 ROW이다 그래서 오류남
+
+
+GROUP BY = ~별 EX)부서별
+여기서는 그룹으로 묶어줘서 DEPTNO사용가능 개별이 아님 묶인 개체임
+
+그룹펑션애들은 WHERE가 조건줄이아니라 HAVING이 조건줄
+
+
+SELECT JOB,DEPTNO,SUM(SAL)
+  2  FROM EMP
+  3  GROUP BY ROLLUP(JOB,DEPTNO);
+
+A랑 B에 대한 집계가 나온뒤 
+A랑 집계만 나옴 (총합)
+맨 마지막은 전체 총합
+
+SELECT A,B,COUNT(*) FROM TMP GROUP BY ROLLUP(A,B);
+
+A B 집계(COUNT)나오고
+A   집계(COUNT)나오고
+     집계(총합)나옴
+A랑 B반대로 쓰면
+
+BA집
+B집
+집
+이렇게나옴 순서에따라 결과도 바뀜
+ROLLUP은 순서가 중요(뒤의 집계가 안나옴)
+CUBE는 순서 중요하지않음(AB집계 전부 나옴)
+
+
+GROUPING SETS 앞에써준 결과에다가 추가적으로 집계를 넣어주고 싶을때
+GROUPING SETS 쓰면됨
+
+ROLLUP,CUBE,GROUPING SETS는 그냥 외우자..
+
+
+
+Top N Query 진짜 핵 중요
+
+월급 5000~ 800까지 받는 사람들이 있었다
+여기서 3번째로 많이 받는 사람 찾고 싶다. 할때 ROWID/ROWNUM 사용
+
+ROWID는 내부적으로 내가 입력한 값을 관리하기위해 오라클이 자기만의 언어로
+가져다가 씀
+
+ROWNUM은 행의 숫자 내가 입력한 값들의 순서를 알려줌 1번째꺼 2번째꺼
+
+ROWNUM은 갯수 새어주는거라서 만약 1 2 3 의 ROWNUM이 내값
+111 222 333과 일치할때 222를 삭제시키면 1은 111에 2는 333으로 감
+ROWID도 내가 넣어준 값처럼 삭제됨 (ROWNUM처럼 자리가 옮겨지진 않음)
+
+ROWNUM은 ORDER BY를 썻을때 그 기준으로 순서가 매겨지는게아니라
+테이블 처음!! 처음 만들어질때 ROW의 순서임
+
+SELECT A.ENAME,A.SAL,ROWNUM
+  2  FROM(SELECT ENAME,SAL FROM EMP ORDER BY SAL DESC) (,AS) A;
+AS 생략가능 A라는 가상테이블 만듬
+가상 테이블은 실제 메모리에 할당안됨
+우리가 A라는 가상테이블을 만들때 디센딩으로 만들어주엇기때문에
+이때는 ROWNUM이 순서대로 찍힘 
+ROWNUM은 테이블 처음만들떄!!! 만들어지는거
+
+
+WHERE ROWNUM = 3;
+이거는 로우넘이 3인 애는 한줄인데 그때 다시 로우넘이 1로 변함.
+그래서 NO ROWS SELECTED
+
+WHERE ROWNUM <=3;
+은 1,2,3을 잡아서 갯수가 3개가 됨 그떄 다시 ROWNUM이 1,2,3,으로되서
+1,2,3이 다출력됨
+
+ROWNUM을 AS로 새로 이름바꿔주면 컬럼으로 추가됨
+
+컬럼이름이 중복이 안되면 B.R에서 B생략 가능
+중복일 경우에는 테이블명을 꼭 명시해줘야함
+
+
+SELECT * FROM(
+  2  SELECT A.ENAME, A.SAL, ROWNUM AS R
+  3  FROM (SELECT ENAME,SAL FROM EMP ORDER BY SAL DESC)A)B;
+
+우리가 EMP테에블이 처음 만들어진 순서대로 ROUNUM이 찍혀서
+그걸 새로 만들어서 DESC순으로 ROWNUM이 찍히게 바꿧는데(A 테이블)
+문제가 ROWNUM = 3;이라고 찍으면 오류가 남(이유는 ROW넘은 컬럼이 아니고
+오라클이 밖에서 제공해주는 순서임)
+그래서 다시 그걸 ROWNUM을 AS해서 R이라는 별칭을 줘서
+새로운 컬럼으로 만들고 A의 테이블 ENAME과 SAL과 ROWNUM을 가져와서
+B에 다시 ENAME과 SAL 과 ROWNUM에 별칭을 준 R을 만들어줌
+이러면 WHERE R = 3;이라고 하면 오류가 안남!!
+
+
+랭크는 동일한 순위도 숫자를셈
+EX) 12344678이렇게감
+댄스 랭크는 동일한 순위는 숫자를 안셈
+EX) 12344567이렇게감
+ROW_NUMBER는
+동일해도 고유한 순위로 매겨짐
+EX) 1234567이렇게가는데 동일한 값이면 고유값으로 순서가 매겨짐
+
+RANK, DENSE_RANK, ROW_NUM 은 오라클꺼임
+오라클 사용하면 이걸로 위에 처럼 힘들게 할필요없지만
+자기 직장이 다른 SQL프로그램을 사용하면 ORACLE 전용 구문은 못씀
+
+여기서 정렬 조건 줄때는 OVER(정렬조건)
