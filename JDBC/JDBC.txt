@@ -1,0 +1,68 @@
+클라이언트는 내가보고잇는 화면
+서버는 클라이언트에서 요청한걸 받아서 다시 클라이언트에 보내줌
+
+oracle.jdbc.driver에서
+OracleDriver.class로 연결할거다!
+
+Java Data Base Connection
+순서
+1. driver 연결 (ojdbc6.jar) 이거 진짜 중요 연결하고 꼭 하자
+Calss.forName("oracle.jdbc.driver.OracleDriver")
+2. 계정 연결
+String url = "jdbc:oracle:thin:@localhost:1521:xe";
+String user = "kh";
+String password = "kh";
+
+Connection connection = DriverManager.getConnection(url,user,password);
+3. query 준비
+Statement stmt = con.createStatement();
+커넥션 개체가 너는 이제 리턴받는 역할을해라
+
+String sql = "";
+
+4. query 실행 및 리턴
+4-1. SELECT
+우리의 쿼리를 데이터베이스에서 받아서 리턴 받을거다.
+ResultSet rs = stmt.excuteQuery(sql);
+while로 뽑기
+이거는 우리가 테이블을 출력할거다 그래서 ResultSet으로 받는거다 그리고 excuteQuery이고
+
+4-2. INSERT,UPDATE,DELETE
+이거는 우리가 삽입,수정,삭제해서 삽입,수정,삭제가 된 로우의 갯수를 리턴받음.
+그래서 int 변수 = stmt.excuteUpdate(sql);로 받아야한다.
+
+5. db 종료
+rs.close();
+stmt.close();
+connection.close();
+종료는 우리가 가장 늦게 연것부터
+순서대로 닫아야함
+
+꼭외우자 진짜 중요하다 
+개발자니깐 내부연결이 어떻게 되는지 알아야함
+
+
+PreparedStatement 개중요함 꼭읽어보자
+
+전자정부 프레임워크
+eGov' framework
+정부 (공공기관)용 웹 개발 프로그램
+
+
+다오 인터페이스 가이드역할
+
+인터페이스 사용하는 이유!
+
+지금은 딱히 필요없는데 나중에는 가이드라인이(인터페이스) 필요함
+확장도 하기 좋고
+스태틱파이널로 변수를 상수화 시켜서 사용하기도 용이함
+
+인터페이스를 상속받은 임플클래스는
+db랑 연결 쿼리 실행 및 리턴 db종료만 할거임!!
+
+statement 안에 sql대신 이제 상수화시킨 상수명을 넣어줌
+그리고 임플클래스 변경시에 sql구문을 안에서 작성해주면 다 변경하고 그래야하는데
+그런거 필요없이 상수명을 가져오면 아주 편함
+
+연산 처리는 꼭 비즈에서하자
+dto에서는 하지말자 나중에 다른사람이 내 코드보고 유지보수하면 혼동이 온다

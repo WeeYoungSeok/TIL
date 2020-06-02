@@ -1,0 +1,9 @@
+MVC pattern(DBTest02) 연습
+ 
+M : model : 계산(연산), 처리(BIZ) / DB연결 (DAO)
+		Data Transfer Object (DTO) or VO (Value Object)
+		값이 담겨져 있는 객체야?
+V : View : 화면
+C : Controller : 요청에 맞는 어떤 화면을 응답할 건지 제어해줌.
+
+신텍스에러 sql문확인
