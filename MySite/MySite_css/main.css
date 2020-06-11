@@ -1,0 +1,208 @@
+@font-face{
+      font-family: "notokr-Regular";
+      src: url("NotoSans-Regular.woff") format("truetype");
+      font-style: normal;
+      font-weight: normal;
+      /* 메인 css 입장에서는 css폴더 타고가면안댐 현재 폴더임 */
+   }
+   @font-face{
+      font-family: "notokr-light";
+      src: url("notokr-light.woff") format("truetype");
+      font-style: normal;
+      font-weight: normal;
+   }
+   @font-face{
+      font-family: "notokr-bold";
+      src: url("notokr-bold.woff") format("truetype");
+      font-style: normal;
+      font-weight: normal;
+   }
+* {
+	padding: 0px;
+	margin: 0px;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+
+::selection {
+	background-color: #F9ED00;
+}
+
+.thumb_slide {
+	height: 720px;
+	margin-top: 10px;
+}
+
+
+
+.kakao {
+	padding-left: 10px;
+}
+
+.desc_subtop {
+	position: relative;
+	top: 145px;
+	left: 185px;
+	color: white;
+	text-shadow: 1px 1px;
+}
+
+.img_thumb {
+	position: relative;
+	top: 145px;
+	left: 185px;
+}
+#h11{
+	float: left;
+	width: 10%;
+}
+.kakao {
+	
+	font-family: notokr-light;
+	
+}
+
+li {
+	font-family: notokr-Regular;
+	list-style: none;
+	
+	padding-right: 10px;
+}
+
+
+nav > ul >li{
+	float: left;
+	line-height: 60px;
+	padding-right: 25px;
+	
+}
+nav{
+	
+	width: 50%;
+}
+nav > .ul1 {
+	width: 100%;
+	height: 40px;
+	padding-left: 100px;
+}
+
+.menu{
+	
+}
+
+.ul2 > li{
+	float: left;
+	
+	line-height: 60px; 
+	font-size: 14px;
+}
+.lan2{
+	color: #BDBDBD;
+}
+
+.ul2{
+	
+	width: 17%;
+	float: right;
+}
+
+.ul3 > li{
+	line-height: 58px;
+}
+nav{
+	
+	float: left;
+}
+.kakao1{
+	font-family: notokr-bold;
+}
+#div1{
+	
+	clear: both;
+}
+#h11{
+	width: 25%;
+	margin: 13px;
+	font-size: 25px;
+	
+}
+.head{
+	
+	width: 100%;
+	text-align: center;
+	border-bottom: 0.3px solid #EAEAEA;
+}
+#div2{
+	
+	width: 80%;
+	margin-left: 10%;
+}
+#div1{
+	width: 80%;
+	margin-left: 19%;
+	
+}
+#div3{
+	position: sticky;
+}
+.ul3 > li{
+	float: left;
+	line-height: 70px;
+}
+.info_path > li{
+	float: left;
+	line-height: 70px;
+}
+.ul3{
+	height: 40px;
+	width: 20%;
+	float: left;
+	padding-left: 100px;
+	
+}
+.info_path{
+	height: 40px;
+	width: 60%;
+	float: left;
+}
+#aaa{
+	margin-top: 30px;
+}
+#bbb{
+	position: relative;
+	top: -645px;
+	left: 380px;
+}
+
+#p1{
+	position: relative;
+	top: -620px;
+	left: 380px;
+	font-weight: bold;
+    font-size: 30px;
+    line-height: 48px;
+    color: #fff;
+    text-shadow: 0 1px 1px #000;
+    width: 800px;
+}
+#ddd{
+	position: fixed;
+	top: 850px;
+	left: 1807px;
+}
+
+#eee{
+	position: relative;
+	left: 615px;
+}
+#fo1{
+	width: 100%;
+	height: 100px;
+	background-color: black;
+	color: white;
+}
+#fo1 > p {
+	
+}
