@@ -1,0 +1,36 @@
+JQUERY : 자바스크립트 라이브러리 임(jquery가 처음에는 별로 없엇는데 너무 편리하고 쉽다보니
+이거 저거 추가하다보니 너무 무거워짐 그러다보니 이제 가볍게좀 만들자함)
+그래도 엄청 많이씀..
+
+vanilla script : 순수 자바스크립트
+-> 코드가 복잡해지면 var로 전부 이루어져있어서 무슨 타입인지 알기 진찌힘듬
+그래서 typescript기반이 많이 쓰이고 있음(Deno도 이 기반)
+
+Javascript library
+라이브러리 : 내가 만든 기능 배포
+
+Java library -> *.jar
+웹 배포하면 -> *.war(웹 아카이브 파일)
+
+js파일도 우리가 함수 가져다가 쓸거야(이것도 라이브러리)
+
+angular.js
+vue.js
+react.js 이것들도 라이브러리라고하지만 아무리봐도 프레임워크임..
+
+
+$( "button.continue" ).html( "Next Step..." )
+
+자바스크립트로 바꾸려면
+document.getElementsClassName("continue")[0].innerHTML="Next Step...."; 이렇게 길어짐
+jquery가 이래서 좋음
+
+
+Download the compressed 공백까지 싹다지워서 최대한 줄인 버전
+un은 공백 포함
+둘 차이 용량 거의 4배..
+
+둘다 제공하는 이유
+나중에 우리가 프로젝트 회사에서 사용하다 보니깐
+우리가 커스터마이징(변경하고싶을때) 그럴때 uncompressed버전을 이용해야함
+그냥 compressed쓰면 눈알터짐
