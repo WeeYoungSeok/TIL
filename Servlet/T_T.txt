@@ -1,0 +1,44 @@
+리스트 : 여러타입을 효과적으로 담아줄 수 있는 객체, 자료를 보다 쉽게 관리
+
+List는 순서가있고 중복을 허용
+
+제네릭에는 타입이 들어갈수 있다.
+
+그 제네릭에는 클래스명을 넣어줄 수 있다. ( 그러면 그 클래스의 객체를 받아올 수 있음 ) -> list add할때 new로 받아서 객체를 넣어줄수잇음 
+// 여기 부분은.. 이해는되는데 말로 설명이 힘드네요 ㅠㅠ
+
+List<MyBoardDto> list = dao.selectList();
+여기서 MyBoardDto를 타입으로 쓸 수 있는 이유는 import 해서 가능했다.
+
+List는 이제 MyBoardDto타입? 객체를 담을 수 있다
+
+dao.selectList() 이건 결국 dto를 담은 list
+
+selectList()에서
+우리가 MyBoardDto 생성자를 만들어준 뒤(인스턴스 변수 dto)
+dto.set메서드를 이용해 값을 초기화 시키고
+그 초기화됐던 dto를 리스트에 담아줌(list.add(dto)
+이러면 0번지의 list는 하나의 dto객체가 담아짐
+
+*초기화법은 list.add(new MyBoardDto(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5)));
+이렇게 초기화가 가능하다.
+
+그러면 list.get(0)을 호출하면 결국 dto가 반환이됨 ( 출력시 toString 없으면 주소값 있을시 우리가 리턴해준 문자열 )
+
+*아니면 반환하면 new MyBoardDto(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5))
+이게 반환이됨.
+
+그럼 결국 우리가 메서드 호출할때 처럼 dto.get~~~로 MyBoardDto의 메서드를 호출할수잇음
+
+*아니면 (new MyBoardDto(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5))).get~~~로 메서드를 호출할수있음..
+
+결국 list의 0번지에는 우리가 0번지에 dto들을 초기화 시켜준 값들이 들어간 dto객체??(클래스??)임
+// 여기 부분도 이해가 되는데 말을 못하겠네요 ㅠ
+
+그래서 문법이 list.get(i).해서 불러오는 문법이아니라 list.get(i)는 결국 dto라서  .을 붙여서 메서드 호출을 한것 
+
+
+
+
+
+
