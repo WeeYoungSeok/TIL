@@ -1,0 +1,43 @@
+공통적인 부분은 만들어져있고
+특정 부분을 개발자가 추가한 프로그램 ( 반쯤 만들어진 프로그램 )
+
+인스턴스 : 객체
+
+DataSource : database connection객체를 가져와줌 (Mybatis에서 한정)
+
+encironments : mybatis의 환경설정이 들어갈수있음
+
+JDBC템플릿이 xml로 바뀐거임 driver url username password 가져오는거
+
+SqlSessionFactory 에서 SqlSession 만들기 (dao 부분)
+
+자바에서 데이터베이스로 쿼리를 전달해서 원하는 데이터를 얻기위함(쿼리문이 중요함)
+
+
+꼭 기억
+1. SqlMapConfig : sqlSessionFactory - 이것을 빌드해주는애 객체 만들어주는애
+어떻게 빌드해오냐?? config.xml로 
+
+2 config.xml은 설정해줌 datasource를(driver, url, username, password)
+Type Alise,Mapper도 config에서 해줄거임
+마이바티스의 전반적인 설정을 잡아주는애
+
+3. Mapper.xml - 쿼리문을 작성해주는 부분
+
+
+
+db.properties에 driver url username password만 적어서
+config.xml에서 가져오면 property에 잘 들어간다.
+
+
+
+<configuration> 아래 적어줄때 타입 순서 꼭 지켜야함
+Content Model : (properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, 
+ objectWrapperFactory?, reflectorFactory?, plugins?, environments?, databaseIdProvider?, 
+ mappers?)
+
+
+<typeAliases>
+	<typeAlias type="com.my.model.dto.MyDto" alias="myDto"/>
+</typeAliases>
+myDto라고 쓸 수 있음 (type에 있는 MyDto클래스를)
