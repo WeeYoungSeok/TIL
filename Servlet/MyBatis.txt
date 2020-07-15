@@ -1,4 +1,9 @@
-공통적인 부분은 만들어져있고
+MyBatis : 퍼시스턴스 "프레임워크"
+-> JDBCTemplate의 공통적인 코드를(보일러플레이트)
+	마이바티스가 다른 부분들은 처리할테니
+	사용자(개발자)는 sql에 집중하도록 하자.
+
+프레임워크 : 공통적인 부분은 만들어져있고
 특정 부분을 개발자가 추가한 프로그램 ( 반쯤 만들어진 프로그램 )
 
 인스턴스 : 객체
@@ -41,3 +46,41 @@ Content Model : (properties?, settings?, typeAliases?, typeHandlers?, objectFact
 	<typeAlias type="com.my.model.dto.MyDto" alias="myDto"/>
 </typeAliases>
 myDto라고 쓸 수 있음 (type에 있는 MyDto클래스를)
+
+
+typeAliases
+타입 별칭은 자바 타입에 대한 짧은 이름이다. 오직 XML 설정에서만 사용되며, 타이핑을 줄이기 위해 존재한다. 예를들면:
+
+<typeAliases>
+  <typeAlias alias="Author" type="domain.blog.Author"/>
+  <typeAlias alias="Blog" type="domain.blog.Blog"/>
+  <typeAlias alias="Comment" type="domain.blog.Comment"/>
+  <typeAlias alias="Post" type="domain.blog.Post"/>
+  <typeAlias alias="Section" type="domain.blog.Section"/>
+  <typeAlias alias="Tag" type="domain.blog.Tag"/>
+</typeAliases>
+
+
+Result Maps 개중요함
+강력한 엘리먼트임
+MyBoard_MyBatis에 적혀있음
+
+
+
+
+우리가 mybatis를 쓸떄 mapper랑 config를 매번 복사해서 쓰기 힘드니깐
+이클립스에서 Windows properti어쩌구 누르고
+xml들어가서 xml catalog들어가서 add누르고
+https://mybatis.org/mybatis-3/ko/getting-started.html 들어가서
+
+XML에서 SqlSessionFactory 빌드하기
+
+부분을보고 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  << "" 안에있는건 key에
+  	"http://mybatis.org/dtd/mybatis-3-config.dtd">  << "" 안에있는건 location에 하고 ok
+
+매핑된 SQL 구문 살펴보기
+
+부분을보고 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+위와 동일하게 넣기
