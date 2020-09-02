@@ -1,0 +1,14 @@
+선생님 SpringMVC01_Hello에서요 프로젝트 런에즈를 실행하면 home.jsp가 바로호출이되었잖아요?
+그게 web.xml에서 url 패턴이 /라는뜻이 무슨요청이든 여기로 보낸다는거니깐
+ appServlet으로 들어가서 url 패턴이 /여서 
+이게 HomeComtroller로 들어가서
+ /를 찾아서 그 메소드로 들어가서 실행되고
+Resolver가 home 앞뒤로 경로랑 .jsp붙여줘서 실행된건가요?
+
+이게 맞는거임
+
+근데 왜 *.do로 바꿧는데 MVC02에서는 index가 호출됐냐?
+이거는 프로젝트안에있는 web.xml에서 *.do로 바꾸어서
+찾을수가 없는데(여기서는 순서 명시안했음)
+톰캣 안에 server안에 web.xml안에 있는 기본적인 경로처음이
+index.html이라서 이게 알아서 잡아준거임!!
